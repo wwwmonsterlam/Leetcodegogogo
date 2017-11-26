@@ -12,24 +12,21 @@ public class BinaryTreeUpsideDown156 {
             return root;
         }
         
-        TreeNode newRoot = null;
-        reverse(root, newRoot);
-        return newRoot;
+        return reverse(root);
         
     }
     
-    public void reverse(TreeNode node, TreeNode r) {
+    public TreeNode reverse(TreeNode node) {
         if(node.left == null) {
-            r = node;
-            return;
+            return node;
         }
         
-        reverse(node.left, r);
+        TreeNode r = reverse(node.left);
         
         node.left.left = node.right;
         node.left.right = node;
         
-        return;
+        return r;
     }
     
     public static void main(String[] args) {
@@ -39,9 +36,8 @@ public class BinaryTreeUpsideDown156 {
         
         TreeNode newRoot = solution.upsideDownBinaryTree(root);
         
-        while(newRoot != null) {
-            System.out.println(newRoot.val);
-            newRoot = newRoot.left;
-        }
+        System.out.println("The result is: ");
+        System.out.println(newRoot.val);
+        System.out.println(newRoot.right.val);
     }
 }
